@@ -7,6 +7,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from meetup.forms import UserForm
 # Create your views here.
+from meetup.models import UpComingMeetups
 
 
 def index(request):
@@ -30,3 +31,20 @@ def register(request):
     else:
         user_form = UserForm()
     return render(request,'meetup/register.html',{})
+
+def upcoming(request):
+    if request.method == 'POST':
+        heading = request.POST.get('heading')
+        topic = request.POST.get('topic')
+        speaker = request.POST.get('speaker')
+        description = request.POST.get('description')
+        date = request.POST.get('date')
+        time = request.POST.get('time')
+        venue = request.POST.get('venue')
+        u = UpComingMeetups.objects.create(Heading = heading, Topic = topic, Speaker = speaker, Description = description,
+                                           Date = date, Time = time, Venue = venue)
+        u.save()
+        return HttpResponseRedirect('/meetup/index')
+    return render(request, 'meetup/upcoming.html', {})
+
+
