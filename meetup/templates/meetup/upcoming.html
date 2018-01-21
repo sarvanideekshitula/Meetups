@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upcoming</title>
+</head>
+<body>
+<form method="post">
+    {% csrf_token %}
+    Heading:<input name="heading"/>
+Topic:<input name="topic"/>
+Speaker:<input name="speaker"/>
+Description: <input name="description"/>
+Date:<input name="date"/>
+Time: <input name="time"/>
+Venue: <input name="venue"/>
+<input type="submit"/>
+</form>
+</body>
+</html>
