@@ -14,6 +14,3 @@ class Meetups(models.Model):
     def __str__(self):
         return self.Description
 
-
-
-
