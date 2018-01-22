@@ -4,7 +4,7 @@ from django.conf.urls.static import static
 from django.contrib.auth import views as auth_views
 from meetup import views
 from Meetups import settings
-from meetup.views import index, upcoming, Info
+from meetup.views import index, upcoming, Info, done
 
 urlpatterns = [
     url(r'^register/$', views.register, name='register'),
@@ -12,4 +12,5 @@ urlpatterns = [
     url(r'^index/$', index.as_view()),
     url(r'^(?P<pk>\d+)/$', Info.as_view(), name="Info"),
     url(r'^create/$', views.upcoming, name="create"),
+    url(r'^done/$', done.as_view()),
 ]

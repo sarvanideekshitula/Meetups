@@ -21,6 +21,16 @@ class index(ListView):
         context['now'] = d.date()
         return context
 
+class done(ListView):
+    model = UpComingMeetups
+    template_name = 'meetup/display.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(done, self).get_context_data(**kwargs)
+        d = datetime.now()
+        context['now'] = d.date()
+        return context
+
 
 class Info(DetailView):
     model = UpComingMeetups
