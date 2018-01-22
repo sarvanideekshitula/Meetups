@@ -5,19 +5,19 @@ from django.db import models
 
 # Create your models here.
 TOPIC_CHOICES = (
-    ('Technical Presentation', 'TechPre'),
-    ('Non-Technical Presentation', 'NonTechPre'),
+    ('Technical Presentation', 'Technical Presentation'),
+    ('Non-Technical Presentation', 'Non-Technical Presentation'),
     ('Talks', 'Talks'),
 )
 
 class UpComingMeetups(models.Model):
     Heading = models.CharField(max_length=100)
-    Topic = models.CharField(choices=TOPIC_CHOICES, max_length=50, blank=True)
+    Topic = models.CharField(choices=TOPIC_CHOICES, max_length=50, null=True)
     Speaker = models.CharField(max_length=50)
     Description = models.CharField(max_length=500)
     Date = models.DateField(default=None)
     Time = models.TimeField(default=None)
-    Venue = models.CharField(max_length=50)
+    Venue = models.CharField(max_length=50, null=True)
 
     def __str__(self):
         return self.Topic
