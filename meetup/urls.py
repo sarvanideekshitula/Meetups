@@ -13,4 +13,5 @@ urlpatterns = [
     url(r'^(?P<pk>\d+)/$', Info.as_view(), name="Info"),
     url(r'^create/$', views.upcoming, name="create"),
     url(r'^done/$', done.as_view(), name="done"),
+    url(r'^editevent/(?P<pk>\d+)/$', views.editevent, name="edit"),
 ]
