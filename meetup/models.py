@@ -22,3 +22,17 @@ class UpComingMeetups(models.Model):
     def __str__(self):
         return self.Topic
 
+class Pastevents(models.Model):
+    pastevents = models.ForeignKey(UpComingMeetups, on_delete=models.CASCADE, default=0)
+    Image = models.ImageField(default=None)
+    comment = models.CharField(max_length=10000)
+
+
+    def __str__(self):
+        return self.name
+
+
+class Reply(models.Model):
+    comments = models.ForeignKey(Pastevents, on_delete=models.CASCADE, default=0)
+    reply = models.CharField(max_length=100000, default=False)
+
