@@ -2,17 +2,30 @@
 from __future__ import unicode_literals
 
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth import authenticate, login
 from meetup.forms import UserForm
+from datetime import datetime
 # Create your views here.
 from meetup.models import UpComingMeetups
 
 
-def index(request):
-    temp = 'meetup/index.html'
-    return render(request,temp,{})
+class index(ListView):
+    model = UpComingMeetups
+    template_name = 'meetup/index.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(index, self).get_context_data(**kwargs)
+        d = datetime.now()
+        context['now'] = d.date()
+        return context
+
+
+class Info(DetailView):
+    model = UpComingMeetups
+    template_name = 'meetup/info.html'
+
 
 
 def register(request):
@@ -46,5 +59,3 @@ def upcoming(request):
         u.save()
         return HttpResponseRedirect('/meetup/index')
     return render(request, 'meetup/upcoming.html', {})
-
-
