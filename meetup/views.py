@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login
 from meetup.forms import UserForm
 from datetime import datetime
 # Create your views here.
-from meetup.models import UpComingMeetups
+from meetup.models import UpComingMeetups, Pastevents
 
 
 class index(ListView):
@@ -59,3 +59,7 @@ def upcoming(request):
         u.save()
         return HttpResponseRedirect('/meetup/index')
     return render(request, 'meetup/upcoming.html', {})
+
+class editevent(DetailView):
+    model = Pastevents
+    template_name = 'meetup/pasteventdetail.html'
