@@ -1,70 +1,56 @@
 <!DOCTYPE html>
 <html>
-    <head>
-      <meta name="viewport" content="width=device-width, initial-scale=1">
-      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-      <link href="/static/meetup/css/login.css" rel="stylesheet">
+  <head>
+    <meta charset="utf-8">
+    <title>LOGIN</title>
+    <link rel="stylesheet" type="text/css" href="/static/meetup/css/login.css">
+  </head>
+  <body>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
 
-        <title>Login</title>
-    </head>
+<form action="" method="post">
+    {% csrf_token %}
+<div class="container">
+	<div class="row">
+		<div class="col-md-6 col-sm-6 col-xs-6 col-md-offset-3">
+  			<div id="iosBlurBg">
+  				<div id="whiteBg"></div>
+  			</div>
+  			<div id="bottomEnter"></div>
+  			<div id="bottomBlurBg"></div>
+  			<!-- Login Form -->
+  			<div class="loginForm">
+  				<div class="title">
+  					<p>LOG INTO<br><span>SYSTEM</span></p>
+  					<hr>
+  					<hr class="short">
+  				</div>
+  				<form>
+  					<div class="col-3">
+			        	<input class="effect-2" type="text" placeholder="Login..." name="username" value="{{ form.username.value|default_if_none:"" }}">
+			            <span class="focus-border"></span>
 
-    <body>
-      <div id="wrap">
-        <div id="main">
-            <!-- content goes here -->
-            <div class="container" style="margin-left:450px">
-                <div class="row">
-                    <div class="col-md-4 offset-md-4 card">
-                        <div class="card-block">
-                            <h1 class="card-title"><i class="fa fa-address-card" aria-hidden="true"></i> Login</h1>
-                            <hr>
-                            <form action="" method="post">
-                                {% csrf_token %}
-                                <div class="form-group">
-                                    <label for="name">Username</label>
-                                    <input type="text" class="form-control" name="username" id="username"
-                                           value="{{ form.username.value|default_if_none:"" }}" placeholder="Username">
-                                </div>
-                                <div class="form-group">
-                                    <label for="magazine">Password</label>
-                                    <input type="password" class="form-control" name="password" id="magazine" placeholder="Password">
-                                </div>
-                                <div class="form-check">
-                                    <label class="form-check-label">
-                                      <input type="checkbox" value="True" class="form-check-input">
-                                        Remember me
-                                    </label>
-                                  </div>
+			            <input class="effect-2" type="password" name="password" placeholder="Password...">
+			            <span class="focus-border"></span>
+			        </div>
 
-                                <button type="submit" class="btn btn-primary">Login</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+			        <div class="forget">
+			        	<button class="btn btn-default btn-sm">FORGOT PASSWORD?</button>
+			        </div>
 
-    <style>
-        .container {
-            margin-top: 70px;
-            align-self: center;
-        }
-        .notifications {
-            position: fixed;
-            top: 90px;
-            right: 0;
-            z-index: 1000;
-            font-size: 0.7em;
-            max-width: 90%;
-        }
-        body {
-            background-color: 		#DCDCDC;
-        }
-    </style>
-
-
-    </body>
+  				</form>
+  			</div>
+  			<a href="#">
+          </div>
+  				<div class="enterButton">
+	  				<i class="fa fa-lock fa-2x text-white"></i><br>
+	  				<button type="submit"><span class="enterText text-white">Enter</span></button>
+	  			</div>
+  			</a>
+		</div>
+	</div>
+</div>
+</form>
+  </body>
 </html>
