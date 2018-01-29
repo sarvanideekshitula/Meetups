@@ -24,9 +24,8 @@ class UpComingMeetups(models.Model):
 
 class Pastevents(models.Model):
     pastevents = models.ForeignKey(UpComingMeetups, on_delete=models.CASCADE, default=0)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
     comment = models.CharField(max_length=10000)
-
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=0)
 
     def __str__(self):
         return self.pastevents.Heading

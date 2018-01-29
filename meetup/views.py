@@ -9,6 +9,7 @@ from meetup.forms import UserForm
 from datetime import datetime
 # Create your views here.
 from meetup.models import UpComingMeetups, Pastevents
+from django.shortcuts import render
 
 
 class index(ListView):
