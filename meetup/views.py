@@ -32,11 +32,6 @@ class done(ListView):
         return context
 
 
-class Info(DetailView):
-    model = UpComingMeetups
-    template_name = 'meetup/info.html'
-
-
 
 def register(request):
     if request.method == 'POST':
@@ -70,6 +65,22 @@ def upcoming(request):
         return HttpResponseRedirect('/meetup/index')
     return render(request, 'meetup/upcoming.html', {})
 
-class editevent(DetailView):
-    model = Pastevents
+class display(DetailView):
+    model = UpComingMeetups
     template_name = 'meetup/pasteventdetail.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(display,self).get_context_data(**kwargs)
+        context['list'] = Pastevents.objects.all()
+        return context
+
+def comment(request,pk):
+    a = UpComingMeetups.objects.get(id=pk)
+    if request.method == "POST":
+        pastevent = UpComingMeetups.objects.get(id=pk)
+        user = request.user
+        comments = request.POST.get('comment')
+        u = Pastevents.objects.create(pastevents=pastevent, user = user, comment=comments)
+        u.save()
+        return HttpResponseRedirect('/meetup/display/%d' %a.id)
+    return render(request,'meetup/pasteventdetail.html',{'a':a})
